@@ -15,13 +15,14 @@ describe('Orange HRM Test', () => {
     lastNameField: "[name='lastName']",
     genericField: ".oxd-input--active",
     dateField: "[placeholder='yyyy-dd-mm']",
-    dateCloseButton: ".--close"
+    dateCloseButton: ".--close",
+    submitButton: "[type='submit']"
 
 
   }
 
 
-  it.only('Login Sucess ', () => {
+  it.only('Preencher Campos Perfil ', () => {
     cy.visit('/auth/login')
     cy.title().should('be.equal', "OrangeHRM")
     cy.get(selectorsList.usernameField).type(userData.UserSuccess.username)
@@ -52,15 +53,8 @@ describe('Orange HRM Test', () => {
     cy.get(selectorsList.dateField).eq(0)
         .clear().type("2025-10-10")
             cy.get(selectorsList.dateCloseButton).click()
-
-
-  })
-
-  it('Preencher campos My info', () =>{
-    cy.get(selectorsList.firstNameField).type("Luiz")
-    cy.get(selectorsList.middleNameField).type("Fernando")
-    cy.get(selectorsList.lastNameField).type("Bernardes")
-    cy.get(selectorsList.nickNameField).type("Chiquito")
+    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get('.oxd-text--toast-title').should('be.visible', "Success")
 
   })
 
