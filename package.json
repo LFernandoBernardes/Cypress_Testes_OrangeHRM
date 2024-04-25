@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "cy:open": "cypress open",
     "cy: open: mobile": "cypress open --config viewportWidth=410,viewportHeight=860",
-    "test": "cypress run",
     "test: mobile": "cypress run --config viewportWidth=410,viewportHeight=860"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.8.0"
+  },
+  "dependencies": {
+    "chance": "^1.1.11"
   }
 }
