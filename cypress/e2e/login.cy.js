@@ -1,34 +1,39 @@
 import userData from '../fixtures/user-data.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'
+import MenuPage from '../pages/menuPage'
+
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
 
 describe('Orange HRM Test', () => {
 
-  const selectorsList ={
-    usernameField: "[name='username']" ,
-    passwordField: "[name='password']" ,
-    loginButton: "[type='submit']" ,
-    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module" ,
-    dashboardGrid: '.orangehrm-dashboard-grid' ,
-    wrongCredentialAlert: ".oxd-alert"
-  }
+  it.only('Login Sucess ', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginWhithUser(userData.UserSuccess.username, userData.UserSuccess.password)
+    dashboardPage.checkDashboardPage()
+    menuPage.accessMyinfo()
 
-
-  it('Login Sucess ', () => {
-    cy.visit('/auth/login')
-    cy.title().should('be.equal', "OrangeHRM")
-    cy.get(selectorsList.usernameField).type(userData.UserSuccess.username)
-    cy.get(selectorsList.passwordField).type(userData.UserSuccess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.dashboardGrid)
-    cy.location('pathname').should('be.equal', '/web/index.php/dashboard/index')
+    // cy.visit('/auth/login')
+    //cy.title().should('be.equal', "OrangeHRM")
+  //  cy.get(selectorsList.usernameField).type(userData.UserSuccess.username)
+    //cy.get(selectorsList.passwordField).type(userData.UserSuccess.password)
+    //cy.get(selectorsList.loginButton).click()
+    //cy.get(selectorsList.dashboardGrid)
+    //cy.location('pathname').should('be.equal', '/web/index.php/dashboard/index')
   })
 
   it('Login Fail ', () => {
-    cy.visit('/auth/login')
-    cy.title().should('be.equal', "OrangeHRM")
-    cy.get(selectorsList.usernameField).type(userData.UserFail.username)
-    cy.get(selectorsList.passwordField).type(userData.UserFail.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.wrongCredentialAlert)
+    loginPage.accessLoginPage()
+    loginPage.loginWhithUser(userData.UserFail.username, userData.UserFail.password)
+    // cy.visit('/auth/login')
+    // cy.title().should('be.equal', "OrangeHRM")
+    // cy.get(selectorsList.usernameField).type(userData.UserFail.username)
+    // cy.get(selectorsList.passwordField).type(userData.UserFail.password)
+    // cy.get(selectorsList.loginButton).click()
+    // cy.get(selectorsList.wrongCredentialAlert)
     
   })
 

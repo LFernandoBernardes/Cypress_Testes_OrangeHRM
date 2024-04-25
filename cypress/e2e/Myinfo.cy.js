@@ -1,4 +1,9 @@
 import userData from '../fixtures/user-data.json'
+import LoginPage from '../pages/loginPage'
+import dashboardPage from '../pages/dashboardPage'
+
+const loginPage = new LoginPage()
+const DashboardPage = new dashboardPage()
 
 describe('Orange HRM Test', () => {
 
@@ -16,13 +21,17 @@ describe('Orange HRM Test', () => {
     genericField: ".oxd-input--active",
     dateField: "[placeholder='yyyy-dd-mm']",
     dateCloseButton: ".--close",
+    genericComboBox: ".oxd-select-text--arrow",
     submitButton: "[type='submit']"
-
-
   }
 
+  it('dashboardPage', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginWhithUser(userData.UserSuccess.username, userData.UserSuccess.password)
+    DashboardPage.checkDashboardPage()
+  })
 
-  it.only('Preencher Campos Perfil ', () => {
+  it('Preencher Campos Perfil ', () => {
     cy.visit('/auth/login')
     cy.title().should('be.equal', "OrangeHRM")
     cy.get(selectorsList.usernameField).type(userData.UserSuccess.username)
@@ -53,6 +62,13 @@ describe('Orange HRM Test', () => {
     cy.get(selectorsList.dateField).eq(0)
         .clear().type("2025-10-10")
             cy.get(selectorsList.dateCloseButton).click()
+    // Select Nationality
+    cy.get(selectorsList.genericComboBox).eq(0).click()
+        cy.get(':nth-child(69) > span').click()
+    // Select Marital Status
+    cy.get(selectorsList.genericComboBox).eq(1).click()
+        cy.get('.oxd-select-dropdown > :nth-child(3)').click()     
+    // Button Save
     cy.get(selectorsList.submitButton).eq(0).click()
     cy.get('.oxd-text--toast-title').should('be.visible', "Success")
 
