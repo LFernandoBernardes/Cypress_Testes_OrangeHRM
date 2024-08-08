@@ -12,18 +12,19 @@ const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
 const myInfoPage = new MyInfoPage()
 
-describe('Orange HRM Test', () => {
+describe('Myinfo Orange HRM Test', () => {
 
-    it.only('Login Sucess ', () => {
+    it.only('User Info Update - Success ', () => {
         loginPage.accessLoginPage()
         loginPage.loginWhithUser(userData.UserSuccess.username, userData.UserSuccess.password)
         dashboardPage.checkDashboardPage()
         menuPage.accessMyinfo()
         myInfoPage.fillPersonalDetails(chance.first({nationality: 'it'}), chance.last({nationality: 'fr'}), chance.last({nationality: 'jp'}))
-        myInfoPage.fillEmployeeDetails(chance.prime(), chance.prime({min: 1, max: 20}),chance.natural(), '2025-05-05')
+        myInfoPage.fillEmployeeDetails(chance.prime(), chance.prime({min: 1, max: 20}),chance.natural(), '2025-06-11')
         myInfoPage.fillStatus()
         myInfoPage.saveFor()
       })
+
 })
 
 

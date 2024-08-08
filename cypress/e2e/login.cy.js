@@ -7,7 +7,7 @@ import DashboardPage from '../pages/dashboardPage'
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 
-describe('Orange HRM Test', () => {
+describe('Login Orange HRM Test', () => {
 
   it('Login Sucess ', () => {
     loginPage.accessLoginPage()
@@ -20,4 +20,6 @@ describe('Orange HRM Test', () => {
     loginPage.loginWhithUser(userData.UserFail.username, userData.UserFail.password)
     loginPage.checkAccessInvalid()
   })
+
+
 })
