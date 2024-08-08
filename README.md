@@ -17,10 +17,10 @@ Foram implementados testes automatizados para as páginas de "Login" e "My Info"
 ### Estrutura do Projeto
 O projeto de QA para o site OrangeHRM está organizado da seguinte forma:
 
-- No diretório tests/features, encontram-se os cenários de teste em linguagem Gherkin.
-- O diretório docs contém a documentação do projeto, incluindo o manual de testes e a apresentação em PDF.
-- Os scripts de teste automatizados estão localizados no diretório tests/automation.
-
+- No diretório Documentos, encontram-se a apresentação em PDF da Documentação/ Requisitos e dos Cenários de Teste/ Casos de testes manuais e os que foram automatizados escritos em Liguagem Gherkin
+- Os scripts de teste automatizados estão localizados no diretório cypress/e2e
+- Na pasta page estão as chamadas dos testes usados nas features de login e user 
+ 
 Todos esses artefatos, juntamente com o arquivo PDF contendo os requisitos e cenários de testes, estão disponíveis no repositório do projeto no GitHub.
 
 ## Installation
