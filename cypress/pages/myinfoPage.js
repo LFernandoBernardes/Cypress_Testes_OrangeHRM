@@ -9,7 +9,8 @@ class MyInfoPage {
         //    dateField: "[placeholder='yyyy-dd-mm']",
             dateCloseButton: ".--close",
             genericComboBox: ".oxd-select-text--arrow",
-            submitButton: "[type='submit']"
+            submitButton: "[type='submit']",
+            
         }
     return selectors
 }
@@ -48,6 +49,11 @@ class MyInfoPage {
     cy.get('.oxd-text--toast-title').should('be.visible', "Success")
    }
 
+   saveInvalid (){
+    cy.get(this.selectorList().submitButton).eq(0).click()
+    cy.get('.oxd-input-field-error-message').should('be.visible', "Required")
+  }
+ 
 
 }
 
